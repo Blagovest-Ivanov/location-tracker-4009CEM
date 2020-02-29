@@ -1,22 +1,20 @@
 from threading import Thread
 import cherrypy
 import jinja2
-import paho.mqtt.client as mqtt                                         #necessary imports
+import paho.mqtt.client as mqtt
 import sqlite3 as sql
-import json, os
+import json
 from datetime import date, datetime
-from . import config as setup
-
+import os
+from config import *
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),extensions=['jinja2.ext.autoescape'])
 DB = 'locations.db'
 
    
 class WebServer(Thread):
    def run(self):
-        cherrypy.config.update({'server.socket_host': '0.0.0.0'})
-        cherrypy.config.update({'server.socket_port': 5003})
-        cherrypy.quickstart(LocationsWebsite(), '/', setup.config)
-
+        cherrypy.quickstart(LocationsWebsite(), '/', setup)
+        # print(config.setup)
     
     
 class LocationsWebsite(object):
