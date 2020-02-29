@@ -1,9 +1,5 @@
-var layerGroup = new L.LayerGroup();
-var firstTime = true;
-var layerRoute;
-
 function load_map() {
-        var myMap = L.map('mapid').setView([52.406822, -1.519693], 13);
+        let myMap = L.map('mapid').setView([52.406822, -1.519693], 13);
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         maxZoom: 18,
@@ -37,6 +33,9 @@ function request_map(query, myMap) {
     }).done(function(response) {
 
         var coordinates = JSON.parse(response.foo);
+        lastUserPosition = coordinates[coordinates.length-1];
+        console.log(lastUserPosition);
+
         var geojson = {
             "type": "FeatureCollection",
             "features": [{
@@ -52,17 +51,24 @@ function request_map(query, myMap) {
         layerGroup.addTo(myMap);
         layerGroup.addLayer(layerRoute);
         console.log(coordinates.length);
-        lastUserPosition = coordinates.length-1;
-        newMapPosition =coordinates[lastUserPosition];
-        console.log(newMapPosition);
-        newX = newMapPosition[1];
-        newY = newMapPosition[0];
-        myMap.setView([newX,newY],18);
+        update_new_map_position(lastUserPosition,myMap);
+
     });
     request_map.fail(function(jqXHR, textStatus) {
         alert('Request failed: ' + textStatus);
     });
 }
+
+function update_new_map_position(lastUserPosition, myMap)
+{
+        // console.log(newMapPosition);
+        let newX = lastUserPosition[1];
+        let newY = lastUserPosition[0];
+        myMap.setView([newX,newY],18);
+
+}
+
+
 
 function request_table(query, tableBody) {
     var request_table = $.ajax({
@@ -91,7 +97,7 @@ function request_table(query, tableBody) {
     });
 }
 $(document).ready(function() {
-    var myMap = load_map();
+        var myMap = load_map();
     $('#ajaxcall').on('click', function() {
         var query = document.getElementById("fname").value;
         request_map(query, myMap);
@@ -99,3 +105,7 @@ $(document).ready(function() {
         request_table(query, tableBody);
     });
 });
+
+var layerGroup = new L.LayerGroup();
+var firstTime = true;
+var layerRoute;
