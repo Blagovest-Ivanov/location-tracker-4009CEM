@@ -1,6 +1,10 @@
+var layerGroup = new L.LayerGroup();
+var firstTime = true;
+var layerRoute;
+
 function load_map() {
-    
-    var mymap = L.map('mapid').setView([52.406822, -1.519693], 13);
+        var myMap = L.map('mapid').setView([52.406822, -1.519693], 13);
+
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
         maxZoom: 18,
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' + 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -8,18 +12,30 @@ function load_map() {
         tileSize: 512,
         accessToken: 'pk.eyJ1IjoiYW5lYWJvZ2RhbjEyMyIsImEiOiJjazZ1d2k0bnUwZGRlM2tyam96ajU0YjgyIn0.xV42iki7e4xr3dIHA_i-NA',
         zoomOffset: -1
-    }).addTo(mymap);
-    return mymap;
+    }).addTo(myMap);
+    // myLayer = L.geoJSON().addTo(myMap);
+
+    return myMap;
 }
 
+
 function request_map(query, myMap) {
+    if (firstTime) {
+        firstTime = false;
+    }
+    else
+    {
+        layerGroup.removeLayer(layerRoute);
+    }
+
     var request_map = $.ajax({
-        'url': '/getData_map',
+        'url': '/getMapData',
         data: {
             "data": query
         },
         dataType: "json"
     }).done(function(response) {
+
         var coordinates = JSON.parse(response.foo);
         var geojson = {
             "type": "FeatureCollection",
@@ -32,7 +48,16 @@ function request_map(query, myMap) {
                 }
             }]
         };
-        L.geoJSON(geojson).addTo(myMap);
+        layerRoute = L.geoJSON(geojson).addTo(myMap);
+        layerGroup.addTo(myMap);
+        layerGroup.addLayer(layerRoute);
+        console.log(coordinates.length);
+        lastUserPosition = coordinates.length-1;
+        newMapPosition =coordinates[lastUserPosition];
+        console.log(newMapPosition);
+        newX = newMapPosition[1];
+        newY = newMapPosition[0];
+        myMap.setView([newX,newY],18);
     });
     request_map.fail(function(jqXHR, textStatus) {
         alert('Request failed: ' + textStatus);
@@ -41,7 +66,7 @@ function request_map(query, myMap) {
 
 function request_table(query, tableBody) {
     var request_table = $.ajax({
-        'url': '/getData_table',
+        'url': '/getTableData',
         data: {
             "data": query
         },

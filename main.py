@@ -28,7 +28,7 @@ class LocationsWebsite(object):
     @cherrypy.expose
     @cherrypy.tools.json_out()
     @cherrypy.tools.json_in()
-    def getData_table(self, data):
+    def getTableData(self, data):
         today = date.today().strftime('%Y-%m-%d')
         with sql.connect(DB) as conn:
             cur = conn.cursor()
@@ -38,8 +38,7 @@ class LocationsWebsite(object):
         
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def getData_map(self,data):
-        names = []
+    def getMapData(self, data):
         today = date.today().strftime('%Y-%m-%d')
         with sql.connect(DB) as conn:
             cur = conn.cursor()
