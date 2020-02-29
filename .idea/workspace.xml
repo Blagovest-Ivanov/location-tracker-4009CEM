@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1d16e1bb-67dc-4c7f-b28e-296cd97eb5b0" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1YGuLy9bU9c9l4QgIFpmmoOo1Vl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/unit-test/unit-test.py" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/unit-test" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="bogdan-testing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="bogdan-testing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="unit-test" type="PythonConfigurationType" factoryName="Python">
+      <module name="bogdan-testing" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python3.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/unit-test" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/unit-test/unit-test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python.unit-test" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1d16e1bb-67dc-4c7f-b28e-296cd97eb5b0" name="Default Changelist" comment="" />
+      <created>1582581202109</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1582581202109</updated>
+      <workItem from="1582581219834" duration="1516000" />
+      <workItem from="1582636686428" duration="1273000" />
+      <workItem from="1582735419672" duration="14400000" />
+      <workItem from="1582792220653" duration="8797000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="278" y="46" width="802" height="676" key="#SQL_Dialects" timestamp="1582798665848">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state x="278" y="46" width="802" height="676" key="#SQL_Dialects/0.28.1366.712@0.28.1366.712" timestamp="1582798665848" />
+    <state x="141" y="28" width="1084" height="712" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1582793039586">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state x="141" y="28" width="1084" height="712" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.28.1366.712@0.28.1366.712" timestamp="1582793039586" />
+    <state x="466" y="142" width="426" height="483" key="FileChooserDialogImpl" timestamp="1582793037214">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state x="466" y="142" width="426" height="483" key="FileChooserDialogImpl/0.28.1366.712@0.28.1366.712" timestamp="1582793037214" />
+    <state width="1320" height="102" key="GridCell.Tab.0.bottom" timestamp="1582801041747">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state width="1320" height="102" key="GridCell.Tab.0.bottom/0.28.1366.712@0.28.1366.712" timestamp="1582801041747" />
+    <state width="1320" height="102" key="GridCell.Tab.0.center" timestamp="1582801041746">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state width="1320" height="102" key="GridCell.Tab.0.center/0.28.1366.712@0.28.1366.712" timestamp="1582801041746" />
+    <state width="1320" height="102" key="GridCell.Tab.0.left" timestamp="1582801041745">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state width="1320" height="102" key="GridCell.Tab.0.left/0.28.1366.712@0.28.1366.712" timestamp="1582801041745" />
+    <state width="1320" height="102" key="GridCell.Tab.0.right" timestamp="1582801041746">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state width="1320" height="102" key="GridCell.Tab.0.right/0.28.1366.712@0.28.1366.712" timestamp="1582801041746" />
+    <state x="172" y="28" key="SettingsEditor" timestamp="1582801027974">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state x="172" y="28" key="SettingsEditor/0.28.1366.712@0.28.1366.712" timestamp="1582801027974" />
+    <state x="99" y="128" width="1168" height="513" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1582797431165">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state x="99" y="128" width="1168" height="513" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.28.1366.712@0.28.1366.712" timestamp="1582797431165" />
+    <state x="339" y="211" key="com.intellij.ide.util.TipDialog" timestamp="1582792658933">
+      <screen x="0" y="28" width="1366" height="712" />
+    </state>
+    <state x="339" y="211" key="com.intellij.ide.util.TipDialog/0.28.1366.712@0.28.1366.712" timestamp="1582792658933" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/bogdan_testing$main.coverage" NAME="main Coverage Results" MODIFIED="1582798712630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/bogdan_testing$unit_test.coverage" NAME="unit-test Coverage Results" MODIFIED="1582796735902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/unit-test" />
+  </component>
+</project>
