@@ -130,7 +130,9 @@ function latest_data_table(query, tableBody) {
 
 
 $(document).ready(function() {
-    const tableBody = document.querySelector("#table123 > tbody")
+
+    const tableBody = document.querySelector("#table123 > tbody");
+    latest_data_table(tableBody);
 
         var myMap = load_map();
     $('#ajaxcall').on('click', function() {
@@ -140,11 +142,12 @@ $(document).ready(function() {
     });
 
 
+    setInterval(function(){
 
-    $('#getLatestTableData').on('click', function() {
         latest_data_table(tableBody);
+    //code goes here that will be run every 5 seconds.
+}, 10000);
 
-    });
 
 
 
@@ -192,13 +195,13 @@ $(document).ready(function() {
 
 
 
-
- $('#latest_data_table').on('click', function() {
-        // var query = document.getElementById("fname").value;
-        // request_map(query, myMap);
-        // const tableBody = document.querySelector("#table123 > tbody")
-        request_user_table(tableBody);
-    });
+ //
+ // $('#latest_data_table').on('click', function() {
+ //        // var query = document.getElementById("fname").value;
+ //        // request_map(query, myMap);
+ //        // const tableBody = document.querySelector("#table123 > tbody")
+ //        request_user_table(tableBody);
+ //    });
 
 
 
