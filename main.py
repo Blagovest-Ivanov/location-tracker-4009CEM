@@ -5,7 +5,7 @@ import paho.mqtt.client as mqtt                                         #necessa
 import sqlite3 as sql
 import json, os
 from datetime import date, datetime
-
+from . import config as setup
 
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),extensions=['jinja2.ext.autoescape'])
 DB = 'locations.db'
@@ -15,7 +15,7 @@ class WebServer(Thread):
    def run(self):
         cherrypy.config.update({'server.socket_host': '0.0.0.0'})
         cherrypy.config.update({'server.socket_port': 5003})
-        cherrypy.quickstart(LocationsWebsite(), '/', config) 
+        cherrypy.quickstart(LocationsWebsite(), '/', setup.config)
 
     
     
@@ -96,18 +96,18 @@ def on_message(client, userdata, msg ):                                #client m
 
     
 path = os.path.abspath(os.path.dirname(__file__))
-config = {
-  'global' : {
-    'server.socket_host' : '0.0.0.0',
-    'server.socket_port' : 5003,
-    'server.thread_pool' : 8,
-      'tools.gzip.on': True
-  },
-  '/static': {
-               'tools.staticdir.on': True,
-               'tools.staticdir.dir': '/home/codio/workspace/project/public'
-           }
-}
+# config = {
+#   'global' : {
+#     'server.socket_host' : '0.0.0.0',
+#     'server.socket_port' : 5003,
+#     'server.thread_pool' : 8,
+#       'tools.gzip.on': True
+#   },
+#   '/static': {
+#                'tools.staticdir.on': True,
+#                'tools.staticdir.dir': '/home/PycharmProjects/CEM/location-tracker-4009CEM/public'
+#            }
+# }
 
 datapoll = Thread (target = database_poll )
 webserver = WebServer()
