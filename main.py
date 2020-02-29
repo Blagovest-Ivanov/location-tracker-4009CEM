@@ -5,8 +5,7 @@ import paho.mqtt.client as mqtt                                         #necessa
 import sqlite3 as sql
 import json, os
 from datetime import date, datetime
-import time
-import sys
+
 
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),extensions=['jinja2.ext.autoescape'])
 DB = 'locations.db'

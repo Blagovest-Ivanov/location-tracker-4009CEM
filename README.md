@@ -9,3 +9,6 @@ Inside main.py modify the line below to reflect your local computer path. This i
 #tools.staticdir.dir': '/home/codio/workspace/project/public'
                for example this is my path
                /home/boggy/PycharmProjects/location-tracker-4009CEM/public
+               
+               
+               pip3 install -r requirements.txt
