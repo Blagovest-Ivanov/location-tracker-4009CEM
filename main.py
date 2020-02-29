@@ -43,9 +43,24 @@ class LocationsWebsite(object):
         with sql.connect(DB) as conn:
             cur = conn.cursor()
             cur.execute('SELECT longitude,latitude FROM Location WHERE name = ? AND date = ?', (data,today))
-            results = cur.fetchall()   
+            results = cur.fetchall()
             return {'foo':json.dumps(results)}
- 
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def getLatestTableData(self, data):
+        today = date.today().strftime('%Y-%m-%d')
+        used_data = []
+        data_list = []
+        with sql.connect(DB) as conn:
+            cur = conn.cursor()
+            cur.execute('SELECT name,longitude,latitude,date,time FROM Location WHERE date = ?', (today,))
+            results = cur.fetchall()
+            for data in list(reversed(results)):
+                if data[0] not in used_data:
+                    data_list.append(data)
+                    used_data.append(data[0])
+            return {'foo': json.dumps(data_list)}
 
 
 def database_poll():

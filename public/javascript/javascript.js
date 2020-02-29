@@ -35,6 +35,7 @@ function request_map(query, myMap) {
         var coordinates = JSON.parse(response.foo);
         lastUserPosition = coordinates[coordinates.length-1];
         console.log(lastUserPosition);
+        console.log("Here");
 
         var geojson = {
             "type": "FeatureCollection",
@@ -70,7 +71,7 @@ function update_new_map_position(lastUserPosition, myMap)
 
 
 
-function request_table(query, tableBody) {
+function request_user_table(query, tableBody) {
     var request_table = $.ajax({
         'url': '/getTableData',
         data: {
@@ -96,14 +97,111 @@ function request_table(query, tableBody) {
         alert('Request failed: ' + textStatus);
     });
 }
+
+
+
+function latest_data_table(query, tableBody) {
+    var request_table = $.ajax({
+        'url': '/getLatestTableData',
+        data: {
+            "data": query
+        },
+        dataType: "json"
+    }).done(function(response) {
+        var data_table = JSON.parse(response.foo);
+        while(tableBody.firstChild) {
+            tableBody.removeChild(tableBody.firstChild); //removes data already loaded
+        }
+        data_table.forEach((row) => {
+            const tr = document.createElement("tr");
+            row.forEach((cell) => {
+                const td = document.createElement("td");
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            tableBody.appendChild(tr);
+        });
+    });
+    request_table.fail(function(jqXHR, textStatus) {
+        alert('Request failed: ' + textStatus);
+    });
+}
+
+
+
 $(document).ready(function() {
+    const tableBody = document.querySelector("#table123 > tbody")
+
         var myMap = load_map();
     $('#ajaxcall').on('click', function() {
         var query = document.getElementById("fname").value;
         request_map(query, myMap);
-        const tableBody = document.querySelector("#table123 > tbody")
-        request_table(query, tableBody);
+        request_user_table(query, tableBody);
     });
+
+
+
+    $('#getLatestTableData').on('click', function() {
+        latest_data_table(tableBody);
+
+    });
+
+
+
+
+
+
+
+
+    function latest_data_table(tableBody) {
+
+      var request_table = $.ajax({
+        'url': '/getLatestTableData',
+        data: {
+            "data":"empty",
+        },
+        dataType: "json"
+
+
+    }).done(function(response) {
+        var data_table = JSON.parse(response.foo);
+        while(tableBody.firstChild) {
+            tableBody.removeChild(tableBody.firstChild); //removes data already loaded
+        }
+        data_table.forEach((row) => {
+            const tr = document.createElement("tr");
+            row.forEach((cell) => {
+                const td = document.createElement("td");
+                td.textContent = cell;
+                tr.appendChild(td);
+            });
+            tableBody.appendChild(tr);
+        });
+    });
+    request_table.fail(function(jqXHR, textStatus) {
+        alert('Request failed: ' + textStatus);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+ $('#latest_data_table').on('click', function() {
+        // var query = document.getElementById("fname").value;
+        // request_map(query, myMap);
+        // const tableBody = document.querySelector("#table123 > tbody")
+        request_user_table(tableBody);
+    });
+
+
+
 });
 
 var layerGroup = new L.LayerGroup();
