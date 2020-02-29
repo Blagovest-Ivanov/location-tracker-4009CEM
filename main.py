@@ -6,14 +6,14 @@ import sqlite3 as sql
 import json
 from datetime import date, datetime
 import os
-from config import *
+
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),extensions=['jinja2.ext.autoescape'])
 DB = 'locations.db'
 
    
 class WebServer(Thread):
    def run(self):
-        cherrypy.quickstart(LocationsWebsite(), '/', setup)
+        cherrypy.quickstart(LocationsWebsite(), '/', config)
         # print(config.setup)
     
     
@@ -93,19 +93,19 @@ def on_message(client, userdata, msg ):                                #client m
     
 
     
-path = os.path.abspath(os.path.dirname(__file__))
-# config = {
-#   'global' : {
-#     'server.socket_host' : '0.0.0.0',
-#     'server.socket_port' : 5003,
-#     'server.thread_pool' : 8,
-#       'tools.gzip.on': True
-#   },
-#   '/static': {
-#                'tools.staticdir.on': True,
-#                'tools.staticdir.dir': '/home/PycharmProjects/CEM/location-tracker-4009CEM/public'
-#            }
-# }
+config = {
+  'global' : {
+    'server.socket_host' : '0.0.0.0',
+    'server.socket_port' : 5003,
+    'server.thread_pool' : 8,
+      'tools.gzip.on': True
+  },
+  '/static': {
+               'tools.staticdir.on': True,
+               'tools.staticdir.dir': os.path.dirname(os.path.realpath(__file__)) + '/public'
+           }
+}
+print(os.path.dirname(os.path.realpath(__file__)))
 
 datapoll = Thread (target = database_poll )
 webserver = WebServer()
