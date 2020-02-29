@@ -6,7 +6,7 @@ import sqlite3 as sql
 import json
 from datetime import date, datetime
 import os
-
+from geopy.geocoders import Nominatim
 JINJA_ENVIRONMENT = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),extensions=['jinja2.ext.autoescape'])
 DB = 'locations.db'
 
@@ -35,16 +35,36 @@ class LocationsWebsite(object):
             cur.execute('SELECT name,longitude,latitude,date,time FROM Location WHERE name = ? AND date = ?', (data,today))
             d = cur.fetchall()
             return {'foo':json.dumps(d)}
-        
+
+    def getAddress(self,coordinates):
+        geolocator = Nominatim(user_agent="JH")
+        # print(geolocator.reverse(coordinates))
+        location = geolocator.reverse(coordinates)
+        return location.address
+
+
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def getMapData(self, data):
         today = date.today().strftime('%Y-%m-%d')
+        address = ""
         with sql.connect(DB) as conn:
             cur = conn.cursor()
             cur.execute('SELECT longitude,latitude FROM Location WHERE name = ? AND date = ?', (data,today))
             results = cur.fetchall()
-            return {'foo':json.dumps(results)}
+        try:
+            lastEntry = len(results) - 1
+            coordinates = str(results[lastEntry][1]) + "," + str(results[lastEntry][0])
+            realAddress = self.getAddress(coordinates)
+            # location = geolocator.reverse(address)
+            print(realAddress)
+            print(type(realAddress))
+        except:
+            realAddress = "Could not fetch address"
+        return {'foo':json.dumps(results),
+                'location' : json.dumps(realAddress)
+
+                }
 
     @cherrypy.expose
     @cherrypy.tools.json_out()

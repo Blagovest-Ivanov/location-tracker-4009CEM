@@ -22,6 +22,7 @@ function request_map(query, myMap) {
     else
     {
         layerGroup.removeLayer(layerRoute);
+        layerGroup.removeLayer(marker);
     }
 
     var request_map = $.ajax({
@@ -33,9 +34,14 @@ function request_map(query, myMap) {
     }).done(function(response) {
 
         var coordinates = JSON.parse(response.foo);
+        var realAddress = JSON.parse(response.location);
         lastUserPosition = coordinates[coordinates.length-1];
+        var newX = lastUserPosition[1];
+        var newY = lastUserPosition[0];
+        lastUserPosition = [newX,newY];
         console.log(lastUserPosition);
         console.log("Here");
+        console.log(realAddress);
 
         var geojson = {
             "type": "FeatureCollection",
@@ -48,9 +54,17 @@ function request_map(query, myMap) {
                 }
             }]
         };
-        layerRoute = L.geoJSON(geojson).addTo(myMap);
+
+    // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+       marker = L.marker(lastUserPosition).addTo(myMap);
+      marker.bindPopup(realAddress).openPopup();
+
+      layerRoute = L.geoJSON(geojson).addTo(myMap);
+      layerRoute.addData(marker);
         layerGroup.addTo(myMap);
         layerGroup.addLayer(layerRoute);
+        layerGroup.addLayer(marker);
+
         console.log(coordinates.length);
         update_new_map_position(lastUserPosition,myMap);
 
@@ -63,9 +77,9 @@ function request_map(query, myMap) {
 function update_new_map_position(lastUserPosition, myMap)
 {
         // console.log(newMapPosition);
-        let newX = lastUserPosition[1];
-        let newY = lastUserPosition[0];
-        myMap.setView([newX,newY],18);
+
+        myMap.setView(lastUserPosition,18);
+
 
 }
 
@@ -143,10 +157,9 @@ $(document).ready(function() {
 
 
     setInterval(function(){
-
         latest_data_table(tableBody);
     //code goes here that will be run every 5 seconds.
-}, 10000);
+}, 30000);
 
 
 
