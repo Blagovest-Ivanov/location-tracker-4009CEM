@@ -56,11 +56,16 @@ function request_map(query, myMap) {
         };
 
     // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-       marker = L.marker(lastUserPosition).addTo(myMap);
+var randomColor = Math.floor(Math.random()*16777215).toString(16);
+var markerOptions = {
+    color: '#ffa500'
+
+        };
+
+       marker = L.circleMarker(lastUserPosition,markerOptions).addTo(myMap);
       marker.bindPopup(realAddress).openPopup();
 
       layerRoute = L.geoJSON(geojson).addTo(myMap);
-      layerRoute.addData(marker);
         layerGroup.addTo(myMap);
         layerGroup.addLayer(layerRoute);
         layerGroup.addLayer(marker);
@@ -78,7 +83,7 @@ function update_new_map_position(lastUserPosition, myMap)
 {
         // console.log(newMapPosition);
 
-        myMap.setView(lastUserPosition,18);
+        myMap.setView(lastUserPosition,13);
 
 
 }
@@ -113,62 +118,6 @@ function request_user_table(query, tableBody) {
 }
 
 
-
-function latest_data_table(query, tableBody) {
-    var request_table = $.ajax({
-        'url': '/getLatestTableData',
-        data: {
-            "data": query
-        },
-        dataType: "json"
-    }).done(function(response) {
-        var data_table = JSON.parse(response.foo);
-        while(tableBody.firstChild) {
-            tableBody.removeChild(tableBody.firstChild); //removes data already loaded
-        }
-        data_table.forEach((row) => {
-            const tr = document.createElement("tr");
-            row.forEach((cell) => {
-                const td = document.createElement("td");
-                td.textContent = cell;
-                tr.appendChild(td);
-            });
-            tableBody.appendChild(tr);
-        });
-    });
-    request_table.fail(function(jqXHR, textStatus) {
-        alert('Request failed: ' + textStatus);
-    });
-}
-
-
-
-$(document).ready(function() {
-
-    const tableBody = document.querySelector("#table123 > tbody");
-    latest_data_table(tableBody);
-
-        var myMap = load_map();
-    $('#ajaxcall').on('click', function() {
-        var query = document.getElementById("fname").value;
-        request_map(query, myMap);
-        request_user_table(query, tableBody);
-    });
-
-
-    setInterval(function(){
-        latest_data_table(tableBody);
-    //code goes here that will be run every 5 seconds.
-}, 30000);
-
-
-
-
-
-
-
-
-
     function latest_data_table(tableBody) {
 
       var request_table = $.ajax({
@@ -198,6 +147,36 @@ $(document).ready(function() {
         alert('Request failed: ' + textStatus);
     });
 }
+
+
+$(document).ready(function() {
+
+    const tableBody = document.querySelector("#table123 > tbody");
+    latest_data_table(tableBody);
+
+        var myMap = load_map();
+    $('#ajaxcall').on('click', function() {
+        var query = document.getElementById("fname").value;
+        request_map(query, myMap);
+        request_user_table(query, tableBody);
+    });
+
+
+    setInterval(function(){
+        latest_data_table(tableBody);
+        console.log("updating table")
+        // every 20s
+    }, 20000);
+
+
+
+
+
+
+
+
+
+
 
 
 
