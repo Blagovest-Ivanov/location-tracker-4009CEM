@@ -156,7 +156,7 @@ $(document).ready(function() {
 
         var myMap = load_map();
     $('#ajaxcall').on('click', function() {
-        var query = document.getElementById("fname").value;
+        var query = document.getElementById("fname").value.toUpperCase();
         request_map(query, myMap);
         request_user_table(query, tableBody);
     });
