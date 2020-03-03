@@ -14,6 +14,26 @@ function load_map() {
     return myMap;
 }
 
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2 - lat1);  // deg2rad below
+    var dLon = deg2rad(lon2 - lon1);
+    var a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2)
+    ;
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    var d = R * c; // Distance in km
+    return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
+
+
+
 
 function request_map(query, myMap) {
     if (firstTime) {
@@ -33,12 +53,25 @@ function request_map(query, myMap) {
         dataType: "json"
     }).done(function(response) {
 
-        var coordinates = JSON.parse(response.foo);
+        let coordinates = JSON.parse(response.foo);
         console.log(coordinates);
-        var realAddress = JSON.parse(response.location);
-        var lastUserPosition = coordinates[coordinates.length-1];
-        var newX = lastUserPosition[1];
-        var newY = lastUserPosition[0];
+        console.log(response.location);
+        let realAddress = JSON.parse(response.location);
+        console.log(realAddress);
+        let lastUserPosition = coordinates[coordinates.length-1];
+        let distanceTravelled=0;
+        for (let i = 0; i<= coordinates.length - 2 ; i++)
+        {
+            let firstLatitude = coordinates[i][0];
+            let firstLongitude = coordinates[i][1];
+            let secondLatitude = coordinates[i+1][0];
+            let secondLongitude = coordinates[i+1][1];
+            distanceTravelled += getDistanceFromLatLonInKm(firstLatitude,firstLongitude,secondLatitude,secondLongitude);
+        }
+
+        console.log("Distance travelled:",distanceTravelled);
+        let newX = lastUserPosition[1];
+        let newY = lastUserPosition[0];
         lastUserPosition = [newX,newY];
         console.log(lastUserPosition);
         console.log("Here");
@@ -56,17 +89,17 @@ function request_map(query, myMap) {
             }]
         };
 
-    // marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-var randomColor = Math.floor(Math.random()*16777215).toString(16);
-var markerOptions = {
+    let markerOptions = {
     color: '#ffa500'
 
         };
+      // let markerData = {"Address": realAddress
+      //                   "Distance"
+      //                   }
+      marker = L.circleMarker(lastUserPosition,markerOptions).addTo(myMap);
+      marker.bindPopup("Address aproximation:" +  realAddress + "<br>" + "Distance Today: " + distanceTravelled).openPopup();
 
-       marker = L.circleMarker(lastUserPosition,markerOptions).addTo(myMap);
-      marker.bindPopup(realAddress).openPopup();
-
-      layerRoute = L.geoJSON(geojson).addTo(myMap);
+        layerRoute = L.geoJSON(geojson).addTo(myMap);
         layerGroup.addTo(myMap);
         layerGroup.addLayer(layerRoute);
         layerGroup.addLayer(marker);
@@ -167,7 +200,7 @@ $(document).ready(function() {
         latest_data_table(tableBody);
         console.log("updating table")
         // every 20s
-    }, 20000);
+    }, 50000);
 
 
 
