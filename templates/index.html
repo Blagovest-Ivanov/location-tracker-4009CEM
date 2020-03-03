@@ -2,10 +2,6 @@
 <html>
 
 <head>
-
-
-
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css' rel='stylesheet' />
@@ -19,11 +15,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.14.0/css/mdb.min.css" rel="stylesheet">
-
-
-
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="/static/javascript/javascript.js"></script>
@@ -31,36 +23,61 @@
 
     <title>Location Tracker</title>
 </head>
+<div class="flex-container">
+
+<header id="header-table">
+    <tr class="toptr">
+        <td class="toptd">Location Tracker</td>
+    </tr>
+</header>
+
+</div>
 
 <body>
 
-    <header id="header-table">
 
-        <tr class="toptr">
-            <td class="toptd">Location Tracker</td>
-        </tr>
+<div id="mapid">
+    <div id="map">
+        <div class="leaflet-bottom leaflet-left">
+            <input type="button" id="allUsers" value="Display all users" onclick="getAllUserData" class="btnStyle span3 leaflet-control" />
+                        <input type="button" id="ajaxcall" value="Search user by Name"  class="btnStyle span3 leaflet-control" />
 
-    </header>
-    <div id="mapid"></div>
-    
-    <div id="user-search-form"></div>
-    <input type="text" id="fname" class="form-control" name="fname">
+            <input type="text" id="fname" value="Btn3" class="btnStyle span3 leaflet-control" />
+
+
+
+            <!--
+    <span id="studentsCount" class="lblStyle span3 leaflet-control"> Ikke rutesat: </span>-->
+
+            <div id="marker-legend">  <!-- here the legend -->
+            </div>
+        </div>
     </div>
 
-    <button id="ajaxcall"  class="btn btn-info">Search user by name</button>
+</div>
+
+
+    <div class="flex-container">
+
+    <div class="search-label">
+<!--    <label for="fname">Search user</label>-->
+<!--        <input type="text" id="fname" name="fname">-->
+    </div>
+        <div class="search-button">
+<!--    <button id="ajaxcall"  class="btn btn-info">Search user by name </button>-->
+        </div>
 
 
 
-<!--        <button id="getLatestTableData" class="btn btn-info">Testing latest table</button>-->
 
 
 
 
-    <h1>database query result</h1>
 
 
 
-    <table align="center" id="table123" class="table-bordered table-dark" border="5">
+<div class="table">
+    <table id="table123" class="table-bordered table-dark flex-tainer">
 
         <thead class="datatr">
             <tr class="datatr">
@@ -76,6 +93,12 @@
         </tbody>
 
     </table>
+
+
+</div>
+
+
+</div>
 </body>
 
 </html>
