@@ -34,8 +34,9 @@ function request_map(query, myMap) {
     }).done(function(response) {
 
         var coordinates = JSON.parse(response.foo);
+        console.log(coordinates);
         var realAddress = JSON.parse(response.location);
-        lastUserPosition = coordinates[coordinates.length-1];
+        var lastUserPosition = coordinates[coordinates.length-1];
         var newX = lastUserPosition[1];
         var newY = lastUserPosition[0];
         lastUserPosition = [newX,newY];

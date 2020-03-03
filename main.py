@@ -36,8 +36,8 @@ class LocationsWebsite(object):
             d = cur.fetchall()
             return {'foo':json.dumps(d)}
 
-    def getAddress(self,coordinates):
-        geolocator = Nominatim(user_agent="JH")
+    def getAddress(self, coordinates):
+        geolocator = Nominatim(user_agent="aneab@coventry.ac.uk")
         # print(geolocator.reverse(coordinates))
         location = geolocator.reverse(coordinates)
         return location.address
@@ -47,7 +47,6 @@ class LocationsWebsite(object):
     @cherrypy.tools.json_out()
     def getMapData(self, data):
         today = date.today().strftime('%Y-%m-%d')
-        address = ""
         with sql.connect(DB) as conn:
             cur = conn.cursor()
             cur.execute('SELECT longitude,latitude FROM Location WHERE name = ? AND date = ?', (data,today))
@@ -59,7 +58,8 @@ class LocationsWebsite(object):
             # location = geolocator.reverse(address)
             print(realAddress)
             print(type(realAddress))
-        except:
+        except Exception as e:
+            print(e)
             realAddress = "Could not fetch address"
         return {'foo':json.dumps(results),
                 'location' : json.dumps(realAddress)
