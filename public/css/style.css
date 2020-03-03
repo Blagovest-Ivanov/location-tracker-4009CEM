@@ -13,3 +13,42 @@
 }
 
 
+#table123 {
+
+    width: 90%;
+}
+
+
+
+#table123 th{
+    font-size:20px;
+    text-align:center;
+}
+
+#table123 td{
+
+    font-size:12px;
+    text-align:center;
+}
+
+tr:hover {
+    background-color:#67717f;
+}
+
+
+#user-search-form {
+    margin-top: 20px;
+}
+
+
+
+.form-control
+{
+    width: 100px !important;
+}
+
+#ajaxcall
+{
+    /*background-size: ;*/
+    /*width:100px; !important*/
+}
