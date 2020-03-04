@@ -1,6 +1,9 @@
-#mapid { height: 300px;
-    margin-top:20px;
-    width:100%;
+#mapid {
+    height: 300px;
+    width: 90%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:15px;
 
 }
 
@@ -8,7 +11,7 @@
 #header-table {
 
     text-align:center;
-    font-size:40px;
+    font-size:60px;
     background-color:powderblue;
 }
 
@@ -16,6 +19,9 @@
 #table123 {
 
     width: 90%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:50px;
 }
 
 
