@@ -236,3 +236,4 @@ $(document).ready(function() {
 var layerGroup = new L.LayerGroup();
 var firstTime = true;
 var layerRoute;
+var reroute;
