@@ -1,8 +1,3 @@
-"""
-Testing codio key
-
-"""
-
 
 from threading import Thread
 import cherrypy
